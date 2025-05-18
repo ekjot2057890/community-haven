@@ -2,8 +2,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
 from flask import current_app
 import logging
-from app import mongo
-from app.services.notification_service import send_event_reminders
+from App import mongo
+from App.services.notification_service import send_event_reminders
 
 logger = logging.getLogger(__name__)
 

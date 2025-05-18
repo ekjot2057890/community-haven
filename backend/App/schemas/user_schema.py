@@ -1,5 +1,5 @@
-from app import ma
-from app.models.user import User
+from App import ma
+from App.models.user import User
 
 class UserSchema(ma.SQLAlchemySchema):
     """Schema for serializing User objects"""

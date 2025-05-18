@@ -2,11 +2,11 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from bson import ObjectId
 from functools import wraps
-from app import mongo
-from app.utils.mongo_utils import (
+from App import mongo
+from App.utils.mongo_utils import (
     serialize_id, serialize_ids, get_user_by_id, get_event_by_id
 )
-from app.services.notification_service import send_event_status_notification
+from App.services.notification_service import send_event_status_notification
 
 admin_bp = Blueprint('admin', __name__)
 

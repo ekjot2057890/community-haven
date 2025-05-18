@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Connect - Home</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -27,7 +27,11 @@
                     <button class="icon-btn theme-toggle" aria-label="Toggle theme">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <a href="login.html" class="btn primary-btn">Sign In</a>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn primary-btn sign-in-btn">Sign In</a>
+                        <a href="register.html" class="btn outline-btn sign-up-btn">Sign Up</a>
+                        <a href="#" class="btn primary-btn logout-btn" style="display: none;">Logout</a>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -39,7 +43,9 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="create-event.html">Create Event</a></li>
                     <li><a href="my-events.html">My Events</a></li>
-                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="login.html" class="mobile-sign-in">Sign In</a></li>
+                    <li><a href="register.html" class="mobile-sign-up">Sign Up</a></li>
+                    <li><a href="#" class="mobile-logout" style="display: none;">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -248,7 +254,7 @@
             </div>
         </div>
     </footer>
-
-    <script src="js/script.js"></script>
+    
+    <script src="JS/script.js"></script>
 </body>
 </html>

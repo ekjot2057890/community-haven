@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Community Connect</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .auth-container {
@@ -162,6 +162,11 @@
                     <button class="icon-btn theme-toggle" aria-label="Toggle theme">
                         <i class="fas fa-sun"></i>
                     </button>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn primary-btn sign-in-btn">Sign In</a>
+                        <a href="register.html" class="btn outline-btn sign-up-btn active">Sign Up</a>
+                        <a href="#" class="btn primary-btn logout-btn" style="display: none;">Logout</a>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -173,6 +178,9 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="create-event.html">Create Event</a></li>
                     <li><a href="my-events.html">My Events</a></li>
+                    <li><a href="login.html" class="mobile-sign-in">Sign In</a></li>
+                    <li><a href="register.html" class="mobile-sign-up active">Sign Up</a></li>
+                    <li><a href="#" class="mobile-logout" style="display: none;">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -285,7 +293,7 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="JS/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const registerForm = document.getElementById('register-form');
@@ -294,19 +302,57 @@
                 registerForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Basic validation
+                    // Get form values
+                    const firstName = document.getElementById('first-name').value;
+                    const lastName = document.getElementById('last-name').value;
+                    const email = document.getElementById('email').value;
                     const password = document.getElementById('password').value;
                     const confirmPassword = document.getElementById('confirm-password').value;
                     
+                    // Basic validation
                     if (password !== confirmPassword) {
                         alert('Passwords do not match!');
                         return;
                     }
                     
+                    // Check if user already exists
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    const userExists = users.some(user => user.email === email);
+                    
+                    if (userExists) {
+                        alert('A user with this email already exists. Please login instead.');
+                        return;
+                    }
+                    
+                    // Create new user
+                    const newUser = {
+                        email: email,
+                        password: password,
+                        firstName: firstName,
+                        lastName: lastName,
+                        name: `${firstName} ${lastName}`,
+                        role: 'user',
+                        joinedDate: new Date().toISOString()
+                    };
+                    
+                    // Add user to database
+                    users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    
                     // Simulate form submission
                     const submitButton = this.querySelector('.auth-submit');
                     submitButton.disabled = true;
                     submitButton.textContent = 'Creating account...';
+                    
+                    // Set authentication state
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('user', JSON.stringify({
+                        email: email,
+                        firstName: firstName,
+                        lastName: lastName,
+                        name: `${firstName} ${lastName}`,
+                        role: 'user'
+                    }));
                     
                     // Simulate API call
                     setTimeout(function() {

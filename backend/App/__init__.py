@@ -19,11 +19,11 @@ def create_app(config_class=Config):
     jwt.init_app(app)
 
     # Register blueprints
-    from app.routes.user_routes import user_bp
-    from app.routes.event_routes import event_bp
-    from app.routes.admin_routes import admin_bp
-    from app.routes.auth_routes import auth_bp
-    from app.routes.interest_routes import interest_bp
+    from App.routes.user_routes import user_bp
+    from App.routes.event_routes import event_bp
+    from App.routes.admin_routes import admin_bp
+    from App.routes.auth_routes import auth_bp
+    from App.routes.interest_routes import interest_bp
 
     app.register_blueprint(user_bp, url_prefix='/api')
     app.register_blueprint(event_bp, url_prefix='/api')

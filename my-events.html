@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Events - Community Connect</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .my-events-container {
@@ -230,7 +230,11 @@
                     <button class="icon-btn theme-toggle" aria-label="Toggle theme">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <a href="login.html" class="btn primary-btn">Sign In</a>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn primary-btn sign-in-btn">Sign In</a>
+                        <a href="register.html" class="btn outline-btn sign-up-btn">Sign Up</a>
+                        <a href="#" class="btn primary-btn logout-btn" style="display: none;">Logout</a>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -242,7 +246,9 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="create-event.html">Create Event</a></li>
                     <li><a href="my-events.html" class="active">My Events</a></li>
-                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="login.html" class="mobile-sign-in">Sign In</a></li>
+                    <li><a href="register.html" class="mobile-sign-up">Sign Up</a></li>
+                    <li><a href="#" class="mobile-logout" style="display: none;">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -260,264 +266,42 @@
                 </div>
                 
                 <div class="tabs">
-                    <div class="tab active" data-tab="organizing">Organizing (3)</div>
-                    <div class="tab" data-tab="attending">Attending (2)</div>
-                    <div class="tab" data-tab="past">Past Events (1)</div>
-                    <div class="tab" data-tab="drafts">Drafts (1)</div>
+                    <div class="tab active" data-tab="organizing">Organizing (<span id="organizing-count">0</span>)</div>
+                    <div class="tab" data-tab="attending">Attending (<span id="attending-count">0</span>)</div>
+                    <div class="tab" data-tab="past">Past Events (<span id="past-count">0</span>)</div>
                 </div>
                 
                 <div class="tab-content active" id="organizing">
-                    <div class="event-list">
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Community Yoga Session</h3>
-                                    <span class="event-status status-approved">Approved</span>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Saturday, May 25, 2025
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        9:00 AM - 10:30 AM
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Central Park, Main Lawn
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-users"></i>
-                                        12 attending
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Join us for a relaxing yoga session in the park. All levels welcome! Please bring your own mat and water bottle.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-details.html?id=1" class="btn outline-btn">View Details</a>
-                                    <a href="event-edit.html?id=1" class="btn outline-btn">Edit</a>
-                                    <button class="btn secondary-btn">Cancel Event</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Book Club Meeting</h3>
-                                    <span class="event-status status-approved">Approved</span>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Thursday, June 5, 2025
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        7:00 PM - 8:30 PM
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Community Library, Meeting Room 2
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-users"></i>
-                                        8 attending
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Join our monthly book club discussion. This month we're reading "The Midnight Library" by Matt Haig.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-details.html?id=7" class="btn outline-btn">View Details</a>
-                                    <a href="event-edit.html?id=7" class="btn outline-btn">Edit</a>
-                                    <button class="btn secondary-btn">Cancel Event</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Summer Block Party</h3>
-                                    <span class="event-status status-pending">Pending Approval</span>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Saturday, June 20, 2025
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        3:00 PM - 8:00 PM
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Oak Street, Between 5th and 6th Avenue
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-users"></i>
-                                        0 attending
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Annual summer block party with food, games, music, and activities for all ages.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-details.html?id=8" class="btn outline-btn">View Details</a>
-                                    <a href="event-edit.html?id=8" class="btn outline-btn">Edit</a>
-                                    <button class="btn secondary-btn">Cancel Event</button>
-                                </div>
-                            </div>
+                    <div class="event-list" id="organizing-list">
+                        <!-- Events will be loaded dynamically -->
+                        <div class="empty-state" id="organizing-empty" style="display: none;">
+                            <i class="fas fa-calendar-plus"></i>
+                            <h3>No events yet</h3>
+                            <p>You haven't created any events yet.</p>
+                            <a href="create-event.html" class="btn primary-btn">Create Event</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="tab-content" id="attending">
-                    <div class="event-list">
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Neighborhood Garage Sale</h3>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Thursday, May 30, 2025
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        8:00 AM - 2:00 PM
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Maple Street
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-user"></i>
-                                        Organized by: Michael Brown
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Annual neighborhood garage sale with great deals and treasures.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-details.html?id=2" class="btn outline-btn">View Details</a>
-                                    <button class="btn secondary-btn">Cancel RSVP</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Community Clean-up Drive</h3>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Saturday, June 8, 2025
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        9:00 AM - 12:00 PM
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Riverside Park
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-user"></i>
-                                        Organized by: Sarah Johnson
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Help keep our community clean! Supplies and refreshments provided.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-details.html?id=5" class="btn outline-btn">View Details</a>
-                                    <button class="btn secondary-btn">Cancel RSVP</button>
-                                </div>
-                            </div>
+                    <div class="event-list" id="attending-list">
+                        <!-- Events will be loaded dynamically -->
+                        <div class="empty-state" id="attending-empty" style="display: none;">
+                            <i class="fas fa-calendar-days"></i>
+                            <h3>No events yet</h3>
+                            <p>You're not attending any upcoming events.</p>
+                            <a href="events.html" class="btn primary-btn">Browse Events</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="tab-content" id="past">
-                    <div class="event-list">
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Spring Garden Workshop</h3>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Saturday, April 15, 2025
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        10:00 AM - 12:00 PM
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Community Garden
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-users"></i>
-                                        15 attended
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Learn spring gardening tips and techniques from local experts.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-details.html?id=9" class="btn outline-btn">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="drafts">
-                    <div class="event-list">
-                        <div class="event-item">
-                            <div class="event-item-image">
-                                <i class="fas fa-calendar-days"></i>
-                            </div>
-                            <div class="event-item-content">
-                                <div class="event-item-header">
-                                    <h3 class="event-item-title">Photography Workshop</h3>
-                                    <span class="event-status status-draft">Draft</span>
-                                </div>
-                                <div class="event-item-details">
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-calendar-days"></i>
-                                        Not set
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-clock"></i>
-                                        Not set
-                                    </span>
-                                    <span class="event-item-detail">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Not set
-                                    </span>
-                                </div>
-                                <p class="event-item-description">Learn photography basics and techniques for capturing better photos.</p>
-                                <div class="event-item-actions">
-                                    <a href="event-edit.html?id=10&draft=true" class="btn outline-btn">Continue Editing</a>
-                                    <button class="btn secondary-btn">Delete Draft</button>
-                                </div>
-                            </div>
+                    <div class="event-list" id="past-list">
+                        <!-- Events will be loaded dynamically -->
+                        <div class="empty-state" id="past-empty" style="display: none;">
+                            <i class="fas fa-calendar-week"></i>
+                            <h3>No past events</h3>
+                            <p>You don't have any past events.</p>
                         </div>
                     </div>
                 </div>
@@ -564,58 +348,194 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="JS/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
+            // Check if user is logged in, if not redirect to login
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                alert('Please login to view your events.');
+                window.location.href = 'login.html?redirect=my-events.html';
+                return;
+            }
             
+            // Get current user information
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            
+            // Load events
+            loadUserEvents();
+            
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Remove active class from all tabs and contents
+                    // Remove active class from all tabs and content
                     tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
                     
                     // Add active class to clicked tab and corresponding content
                     this.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
+                    const tabName = this.dataset.tab;
+                    document.getElementById(tabName).classList.add('active');
                 });
             });
             
-            // Check for created=true parameter in URL
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('created') === 'true') {
-                // Show success message
-                const successMessage = document.createElement('div');
-                successMessage.style.padding = '1rem';
-                successMessage.style.marginBottom = '1rem';
-                successMessage.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
-                successMessage.style.color = 'var(--success-color)';
-                successMessage.style.borderRadius = 'var(--border-radius)';
-                successMessage.style.display = 'flex';
-                successMessage.style.alignItems = 'center';
+            function loadUserEvents() {
+                // Get all events from localStorage
+                const allEvents = JSON.parse(localStorage.getItem('events')) || [];
+                const currentDate = new Date();
                 
-                successMessage.innerHTML = `
-                    <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>
-                    Your event has been created successfully and is pending approval.
+                // Filter events by user and date
+                const userEmail = user.email;
+                
+                // Organizing: events created by the user with date >= current date
+                const organizingEvents = allEvents.filter(event => 
+                    event.creator && event.creator.id === userEmail && 
+                    new Date(event.date) >= currentDate
+                );
+                
+                // Attending: events user is attending but did not create, with date >= current date
+                const attendingEvents = allEvents.filter(event => 
+                    event.attendees && 
+                    event.attendees.some(attendee => attendee.id === userEmail && !attendee.isCreator) &&
+                    new Date(event.date) >= currentDate
+                );
+                
+                // Past: events where user was organizing or attending with date < current date
+                const pastEvents = allEvents.filter(event => 
+                    ((event.creator && event.creator.id === userEmail) || 
+                    (event.attendees && event.attendees.some(attendee => attendee.id === userEmail))) &&
+                    new Date(event.date) < currentDate
+                );
+                
+                // Update counts
+                document.getElementById('organizing-count').textContent = organizingEvents.length;
+                document.getElementById('attending-count').textContent = attendingEvents.length;
+                document.getElementById('past-count').textContent = pastEvents.length;
+                
+                // Display events
+                displayEvents('organizing-list', 'organizing-empty', organizingEvents, true);
+                displayEvents('attending-list', 'attending-empty', attendingEvents);
+                displayEvents('past-list', 'past-empty', pastEvents);
+            }
+            
+            function displayEvents(listId, emptyId, events, isOrganizing = false) {
+                const listElement = document.getElementById(listId);
+                const emptyElement = document.getElementById(emptyId);
+                
+                // Clear existing events
+                listElement.innerHTML = '';
+                
+                // Show empty state if no events
+                if (!events || events.length === 0) {
+                    emptyElement.style.display = 'block';
+                    return;
+                }
+                
+                emptyElement.style.display = 'none';
+                
+                // Create event items
+                events.forEach(event => {
+                    const eventItem = createEventItem(event, isOrganizing);
+                    listElement.appendChild(eventItem);
+                });
+            }
+            
+            function createEventItem(event, canDelete = false) {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'event-item';
+                eventItem.dataset.id = event.id;
+                
+                const eventDate = new Date(event.date);
+                const formattedDate = eventDate.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                
+                let actionButtons = `<a href="event-details.html?id=${event.id}" class="btn outline-btn">View Details</a>`;
+                
+                if (canDelete) {
+                    actionButtons += `
+                        <a href="event-edit.html?id=${event.id}" class="btn outline-btn">Edit</a>
+                        <button class="btn secondary-btn delete-event-btn" data-id="${event.id}">Delete Event</button>
+                    `;
+                }
+                
+                eventItem.innerHTML = `
+                    <div class="event-item-image">
+                        <i class="fas fa-calendar-days"></i>
+                    </div>
+                    <div class="event-item-content">
+                        <div class="event-item-header">
+                            <h3 class="event-item-title">${event.title}</h3>
+                            <span class="event-status status-approved">Active</span>
+                        </div>
+                        <div class="event-item-details">
+                            <span class="event-item-detail">
+                                <i class="fas fa-calendar-days"></i>
+                                ${formattedDate}
+                            </span>
+                            <span class="event-item-detail">
+                                <i class="fas fa-clock"></i>
+                                ${event.time}${event.endTime ? ' - ' + event.endTime : ''}
+                            </span>
+                            <span class="event-item-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                ${event.location}
+                            </span>
+                            <span class="event-item-detail">
+                                <i class="fas fa-users"></i>
+                                ${event.attending || 0} attending
+                            </span>
+                        </div>
+                        <p class="event-item-description">${event.description}</p>
+                        <div class="event-item-actions">
+                            ${actionButtons}
+                        </div>
+                    </div>
                 `;
                 
-                const myEventsContainer = document.querySelector('.my-events-container');
-                myEventsContainer.insertBefore(successMessage, myEventsContainer.firstChild);
+                // Add event listener for delete button
+                if (canDelete) {
+                    const deleteBtn = eventItem.querySelector('.delete-event-btn');
+                    deleteBtn.addEventListener('click', function() {
+                        const eventId = this.dataset.id;
+                        if (confirm('Are you sure you want to delete this event?')) {
+                            deleteEvent(eventId);
+                        }
+                    });
+                }
                 
-                // Remove the parameter from URL
+                return eventItem;
+            }
+            
+            function deleteEvent(eventId) {
+                // Get events from localStorage
+                let events = JSON.parse(localStorage.getItem('events')) || [];
+                
+                // Filter out the event to delete
+                events = events.filter(event => event.id !== eventId);
+                
+                // Save updated events back to localStorage
+                localStorage.setItem('events', JSON.stringify(events));
+                
+                // Reload events
+                loadUserEvents();
+                
+                // Show success message
+                alert('Event deleted successfully');
+            }
+            
+            // Check if we just created an event (from URL parameter)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('created') === 'true') {
+                alert('Event created successfully!');
+                // Remove the parameter from the URL
                 window.history.replaceState({}, document.title, window.location.pathname);
-                
-                // Auto-hide the message after 5 seconds
-                setTimeout(() => {
-                    successMessage.style.opacity = '0';
-                    successMessage.style.transition = 'opacity 0.5s ease';
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 500);
-                }, 5000);
             }
         });
     </script>

@@ -2,7 +2,7 @@ from bson import ObjectId
 from datetime import datetime
 from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import mongo
+from App import mongo
 
 def serialize_id(obj):
     """Convert MongoDB ObjectId to string for JSON serialization"""

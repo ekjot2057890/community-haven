@@ -1,5 +1,5 @@
-from app import ma
-from app.models.event import Event
+from App import ma
+from App.models.event import Event
 
 class EventSchema(ma.SQLAlchemySchema):
     """Schema for serializing Event objects"""

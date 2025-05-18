@@ -1,4 +1,4 @@
-from app.models import db
+from App.models import db
 from datetime import datetime
 
 class Interest(db.Model):

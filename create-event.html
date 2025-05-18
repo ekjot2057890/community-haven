@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event - Community Connect</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .create-event-container {
@@ -158,7 +158,11 @@
                     <button class="icon-btn theme-toggle" aria-label="Toggle theme">
                         <i class="fas fa-sun"></i>
                     </button>
-                    <a href="login.html" class="btn primary-btn">Sign In</a>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn primary-btn sign-in-btn">Sign In</a>
+                        <a href="register.html" class="btn outline-btn sign-up-btn">Sign Up</a>
+                        <a href="#" class="btn primary-btn logout-btn" style="display: none;">Logout</a>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -170,7 +174,9 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="create-event.html" class="active">Create Event</a></li>
                     <li><a href="my-events.html">My Events</a></li>
-                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="login.html" class="mobile-sign-in">Sign In</a></li>
+                    <li><a href="register.html" class="mobile-sign-up">Sign Up</a></li>
+                    <li><a href="#" class="mobile-logout" style="display: none;">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -381,9 +387,17 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="JS/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in, if not redirect to login
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                alert('Please login to create an event.');
+                window.location.href = 'login.html?redirect=create-event.html';
+                return;
+            }
+            
             const createEventForm = document.getElementById('create-event-form');
             const imageUploadContainer = document.getElementById('image-upload-container');
             const eventImageInput = document.getElementById('event-image');
@@ -424,17 +438,64 @@
                 createEventForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Simulate form submission
+                    // Get form data
+                    const eventTitle = document.getElementById('event-title').value;
+                    const eventCategory = document.getElementById('event-category').value;
+                    const eventDate = document.getElementById('event-date').value;
+                    const eventTime = document.getElementById('event-time').value;
+                    const eventEndTime = document.getElementById('event-end-time').value;
+                    const eventDescription = document.getElementById('event-description').value;
+                    const eventLocation = document.getElementById('event-location').value;
+                    const eventAddress = document.getElementById('event-address').value;
+                    const eventCity = document.getElementById('event-city').value;
+                    const eventState = document.getElementById('event-state').value;
+                    const eventZip = document.getElementById('event-zip').value;
+                    
+                    // Get current user
+                    const user = JSON.parse(localStorage.getItem('user')) || {};
+                    
+                    // Create new event object
+                    const newEvent = {
+                        id: Date.now().toString(), // Simple unique ID
+                        title: eventTitle,
+                        category: eventCategory,
+                        date: eventDate,
+                        time: eventTime,
+                        endTime: eventEndTime,
+                        description: eventDescription,
+                        location: eventLocation,
+                        address: eventAddress,
+                        city: eventCity,
+                        state: eventState,
+                        zip: eventZip,
+                        creator: {
+                            id: user.email,
+                            name: user.name
+                        },
+                        attending: 1, // Creator is attending by default
+                        attendees: [{
+                            id: user.email,
+                            name: user.name,
+                            isCreator: true
+                        }],
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    // Save event to localStorage
+                    const events = JSON.parse(localStorage.getItem('events')) || [];
+                    events.push(newEvent);
+                    localStorage.setItem('events', JSON.stringify(events));
+                    
+                    // Update button state
                     const submitButton = this.querySelector('button[type="submit"]');
                     submitButton.disabled = true;
                     submitButton.textContent = 'Creating...';
                     
-                    // Simulate API call
+                    // Show success message and redirect
                     setTimeout(function() {
-                        // Redirect to success page or show success message
-                        alert('Your event has been created and is pending approval!');
+                        alert('Your event has been created successfully!');
                         window.location.href = 'my-events.html?created=true';
-                    }, 1500);
+                    }, 1000);
                 });
             }
         });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Community Connect</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .auth-container {
@@ -166,6 +166,11 @@
                     <button class="icon-btn theme-toggle" aria-label="Toggle theme">
                         <i class="fas fa-sun"></i>
                     </button>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn primary-btn sign-in-btn active">Sign In</a>
+                        <a href="register.html" class="btn outline-btn sign-up-btn">Sign Up</a>
+                        <a href="#" class="btn primary-btn logout-btn" style="display: none;">Logout</a>
+                    </div>
                 </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -177,6 +182,9 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="create-event.html">Create Event</a></li>
                     <li><a href="my-events.html">My Events</a></li>
+                    <li><a href="login.html" class="mobile-sign-in active">Sign In</a></li>
+                    <li><a href="register.html" class="mobile-sign-up">Sign Up</a></li>
+                    <li><a href="#" class="mobile-logout" style="display: none;">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -208,6 +216,10 @@
                                 <label for="remember">Remember me</label>
                             </div>
                             <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <div id="login-error" class="error-message" style="color: red; margin-bottom: 1rem; display: none;">
+                            Invalid email or password
                         </div>
                         
                         <button type="submit" class="auth-submit">Sign In</button>
@@ -275,27 +287,50 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="JS/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('login-form');
+            const loginError = document.getElementById('login-error');
             
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Get users from localStorage
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                
+                // Find user with matching email and password
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    // User found - set authentication state
+                    loginError.style.display = 'none';
                     
-                    // Simulate form submission
-                    const submitButton = this.querySelector('.auth-submit');
-                    submitButton.disabled = true;
-                    submitButton.textContent = 'Signing in...';
+                    // Set auth data
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('user', JSON.stringify({
+                        email: user.email,
+                        name: user.name,
+                        role: user.role
+                    }));
                     
-                    // Simulate API call
-                    setTimeout(function() {
-                        // Redirect to dashboard
-                        window.location.href = 'my-events.html';
-                    }, 1500);
-                });
-            }
+                    // Redirect based on role
+                    setTimeout(() => {
+                        if (user.role === 'admin') {
+                            window.location.href = 'admin/dashboard.html';
+                        } else {
+                            window.location.href = 'my-events.html';
+                        }
+                    }, 500);
+                } else {
+                    // User not found or invalid credentials
+                    loginError.textContent = 'Invalid email or password. Please try again or sign up.';
+                    loginError.style.display = 'block';
+                }
+            });
         });
     </script>
 </body>

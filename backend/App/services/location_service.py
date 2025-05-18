@@ -2,8 +2,8 @@ import requests
 import math
 from flask import current_app
 from bson import ObjectId
-from app import mongo
-from app.utils.mongo_utils import serialize_ids
+from App import mongo
+from App.utils.mongo_utils import serialize_ids
 
 def geocode_address(address):
     """Convert address to latitude and longitude coordinates"""

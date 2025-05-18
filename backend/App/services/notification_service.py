@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 from flask import current_app
 from bson import ObjectId
 import requests
-from app import mongo
-from app.utils.mongo_utils import get_user_by_id, get_event_by_id
+from App import mongo
+from App.utils.mongo_utils import get_user_by_id, get_event_by_id
 
 def send_email_notification(recipient, subject, body):
     """Send an email notification"""

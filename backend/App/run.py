@@ -1,7 +1,7 @@
 from App import create_app, mongo
 import os
 import logging
-from app.tasks.scheduler import init_scheduler
+from App.tasks.scheduler import init_scheduler
 from datetime import datetime
 from werkzeug.security import generate_password_hash
 

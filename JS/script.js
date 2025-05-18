@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize database if it doesn't exist
+  initializeDatabase();
+  
   // Mobile menu toggle
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const mobileNav = document.querySelector('.mobile-nav');
@@ -55,6 +58,61 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // Authentication state handling
+  function updateAuthUI() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    
+    // Desktop auth buttons
+    const signInBtn = document.querySelector('.sign-in-btn');
+    const signUpBtn = document.querySelector('.sign-up-btn');
+    const logoutBtn = document.querySelector('.logout-btn');
+    
+    // Mobile auth buttons
+    const mobileSignIn = document.querySelector('.mobile-sign-in');
+    const mobileSignUp = document.querySelector('.mobile-sign-up');
+    const mobileLogout = document.querySelector('.mobile-logout');
+    
+    if (isLoggedIn) {
+      // User is logged in - show logout button, hide login/signup
+      if (signInBtn) signInBtn.style.display = 'none';
+      if (signUpBtn) signUpBtn.style.display = 'none';
+      if (logoutBtn) logoutBtn.style.display = 'inline-block';
+      
+      if (mobileSignIn) mobileSignIn.style.display = 'none';
+      if (mobileSignUp) mobileSignUp.style.display = 'none';
+      if (mobileLogout) mobileLogout.style.display = 'block';
+    } else {
+      // User is logged out - show login/signup, hide logout
+      if (signInBtn) signInBtn.style.display = 'inline-block';
+      if (signUpBtn) signUpBtn.style.display = 'inline-block';
+      if (logoutBtn) logoutBtn.style.display = 'none';
+      
+      if (mobileSignIn) mobileSignIn.style.display = 'block';
+      if (mobileSignUp) mobileSignUp.style.display = 'block';
+      if (mobileLogout) mobileLogout.style.display = 'none';
+    }
+  }
+  
+  // Handle logout button click
+  const logoutBtns = document.querySelectorAll('.logout-btn, .mobile-logout');
+  logoutBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Clear authentication state
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('user');
+      
+      // Update UI
+      updateAuthUI();
+      
+      // Redirect to home page
+      window.location.href = 'index.html';
+    });
+  });
+  
+  // Check authentication state on page load
+  updateAuthUI();
+
   // Category filter
   const filterButtons = document.querySelectorAll('.filter-btn');
   
@@ -74,3 +132,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Database initialization
+function initializeDatabase() {
+  // Initialize users if they don't exist
+  if (!localStorage.getItem('users')) {
+    const defaultUsers = [
+      {
+        email: 'admin@admin.com',
+        password: '1234', // In a real app, this would be hashed
+        name: 'Admin User',
+        role: 'admin'
+      },
+      {
+        email: 'test@gmail.com',
+        password: '5678',
+        name: 'Test User',
+        role: 'user'
+      }
+    ];
+    
+    localStorage.setItem('users', JSON.stringify(defaultUsers));
+  }
+  
+  // Initialize events array if it doesn't exist
+  if (!localStorage.getItem('events')) {
+    localStorage.setItem('events', JSON.stringify([]));
+  }
+}

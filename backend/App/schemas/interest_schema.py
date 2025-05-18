@@ -1,5 +1,5 @@
-from app import ma
-from app.models.interest import Interest
+from App import ma
+from App.models.interest import Interest
 
 class InterestSchema(ma.SQLAlchemySchema):
     """Schema for serializing Interest objects"""
