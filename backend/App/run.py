@@ -1,4 +1,4 @@
-from app import create_app, mongo
+from App import create_app, mongo
 import os
 import logging
 from app.tasks.scheduler import init_scheduler
