@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Community Connect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">Community<span>Connect</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html" class="active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="events.html">
+                            <i class="fas fa-calendar-days"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-flag"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn outline-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Site</span>
+                </a>
+                <button class="btn secondary-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Dashboard</h1>
+                <div class="admin-header-actions">
+                    <button class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <div class="admin-profile">
+                        <span>Admin User</span>
+                        <img src="https://via.placeholder.com/40" alt="Admin profile" class="avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>Pending Events</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-days"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>45</h3>
+                            <p>Active Events</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>128</h3>
+                            <p>Registered Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Reported Content</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Sections -->
+                <div class="dashboard-grid">
+                    <!-- Events Awaiting Approval -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2>Events Awaiting Approval</h2>
+                            <a href="events.html" class="view-all">View all</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Category</th>
+                                        <th>Organizer</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Summer Block Party</td>
+                                        <td>Festivals</td>
+                                        <td>John Smith</td>
+                                        <td>Jun 20, 2025</td>
+                                        <td class="actions-cell">
+                                            <button class="icon-btn view-btn" title="View event">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="icon-btn approve-btn" title="Approve event">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="icon-btn reject-btn" title="Reject event">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Neighborhood Watch Meeting</td>
+                                        <td>Community Classes</td>
+                                        <td>Sarah Johnson</td>
+                                        <td>Jun 15, 2025</td>
+                                        <td class="actions-cell">
+                                            <button class="icon-btn view-btn" title="View event">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="icon-btn approve-btn" title="Approve event">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="icon-btn reject-btn" title="Reject event">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Charity Bake Sale</td>
+                                        <td>Volunteer Opportunities</td>
+                                        <td>Michael Brown</td>
+                                        <td>Jun 18, 2025</td>
+                                        <td class="actions-cell">
+                                            <button class="icon-btn view-btn" title="View event">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="icon-btn approve-btn" title="Approve event">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="icon-btn reject-btn" title="Reject event">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recent Reports -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2>Recent Reports</h2>
+                            <a href="reports.html" class="view-all">View all</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Content</th>
+                                        <th>Type</th>
+                                        <th>Reported By</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Inappropriate Event Description</td>
+                                        <td>Event</td>
+                                        <td>User123</td>
+                                        <td>May 18, 2025</td>
+                                        <td class="actions-cell">
+                                            <button class="icon-btn view-btn" title="View report">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="icon-btn flag-btn" title="Flag content">
+                                                <i class="fas fa-flag"></i>
+                                            </button>
+                                            <button class="icon-btn delete-btn" title="Delete content">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spam Event</td>
+                                        <td>Event</td>
+                                        <td>User456</td>
+                                        <td>May 17, 2025</td>
+                                        <td class="actions-cell">
+                                            <button class="icon-btn view-btn" title="View report">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="icon-btn flag-btn" title="Flag content">
+                                                <i class="fas fa-flag"></i>
+                                            </button>
+                                            <button class="icon-btn delete-btn" title="Delete content">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div class="modal" id="event-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Event Details</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="event-detail">
+                    <h3>Summer Block Party</h3>
+                    <div class="event-meta">
+                        <span class="badge badge-primary">Festivals</span>
+                        <span class="badge badge-warning">Pending Approval</span>
+                    </div>
+                    <div class="event-info">
+                        <div class="info-item">
+                            <i class="fas fa-calendar-days"></i>
+                            <span>June 20, 2025</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>3:00 PM - 8:00 PM</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Oak Street, Between 5th and 6th Avenue</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <span>Organized by: John Smith</span>
+                        </div>
+                    </div>
+                    <div class="event-description">
+                        <h4>Description</h4>
+                        <p>Join us for our annual summer block party! There will be food, games, music, and activities for all ages. Bring your family and meet your neighbors. In case of rain, the event will be postponed to the following weekend.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn approve-btn">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+                <button class="btn reject-btn">
+                    <i class="fas fa-times"></i> Reject
+                </button>
+                <button class="btn flag-btn">
+                    <i class="fas fa-flag"></i> Flag
+                </button>
+                <button class="btn delete-btn">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings - Community Connect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .settings-grid {
+                grid-template-columns: 250px 1fr;
+            }
+        }
+        
+        .settings-nav {
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .settings-nav-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .settings-nav-item:last-child {
+            border-bottom: none;
+        }
+        
+        .settings-nav-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .settings-nav-item:not(.active):hover {
+            background-color: var(--bg-secondary);
+        }
+        
+        .settings-nav-item i {
+            margin-right: 0.75rem;
+            width: 1.25rem;
+            text-align: center;
+        }
+        
+        .settings-content {
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+        }
+        
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+        
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .settings-section h2 {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-group .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-group .checkbox-group input {
+            width: auto;
+        }
+        
+        .form-group .hint {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .settings-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">Community<span>Connect</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="events.html">
+                            <i class="fas fa-calendar-days"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-flag"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html" class="active">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn outline-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Site</span>
+                </a>
+                <button class="btn secondary-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Settings</h1>
+                <div class="admin-header-actions">
+                    <button class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <div class="admin-profile">
+                        <span>Admin User</span>
+                        <img src="https://via.placeholder.com/40" alt="Admin profile" class="avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <div class="settings-grid">
+                    <div class="settings-nav">
+                        <div class="settings-nav-item active" data-tab="general">
+                            <i class="fas fa-sliders-h"></i>
+                            <span>General</span>
+                        </div>
+                        <div class="settings-nav-item" data-tab="events">
+                            <i class="fas fa-calendar-days"></i>
+                            <span>Events</span>
+                        </div>
+                        <div class="settings-nav-item" data-tab="users">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </div>
+                        <div class="settings-nav-item" data-tab="notifications">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </div>
+                        <div class="settings-nav-item" data-tab="appearance">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>Appearance</span>
+                        </div>
+                        <div class="settings-nav-item" data-tab="security">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security</span>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <!-- General Settings -->
+                        <div class="tab-content active" id="general">
+                            <div class="settings-section">
+                                <h2>General Settings</h2>
+                                <form id="general-settings-form">
+                                    <div class="form-group">
+                                        <label for="site-name">Site Name</label>
+                                        <input type="text" id="site-name" name="site-name" value="Community Connect">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="site-description">Site Description</label>
+                                        <textarea id="site-description" name="site-description">Bringing communities together through local events and activities.</textarea>
+                                    </div>
+                                    
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="contact-email">Contact Email</label>
+                                            <input type="email" id="contact-email" name="contact-email" value="support@communityconnect.com">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="timezone">Default Timezone</label>
+                                            <select id="timezone" name="timezone">
+                                                <option value="utc">UTC</option>
+                                                <option value="est" selected>Eastern Time (ET)</option>
+                                                <option value="cst">Central Time (CT)</option>
+                                                <option value="mst">Mountain Time (MT)</option>
+                                                <option value="pst">Pacific Time (PT)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="settings-actions">
+                                        <button type="button" class="btn outline-btn">Reset to Default</button>
+                                        <button type="submit" class="btn primary-btn">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Events Settings -->
+                        <div class="tab-content" id="events">
+                            <div class="settings-section">
+                                <h2>Event Settings</h2>
+                                <form id="event-settings-form">
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="event-approval" name="event-approval" checked>
+                                            <label for="event-approval">Require admin approval for new events</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="verified-only" name="verified-only">
+                                            <label for="verified-only">Only allow verified organizers to create events</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="max-events-per-user">Maximum Events Per User</label>
+                                        <input type="number" id="max-events-per-user" name="max-events-per-user" value="10" min="1">
+                                        <p class="hint">Set to 0 for unlimited</p>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="event-categories">Event Categories</label>
+                                        <textarea id="event-categories" name="event-categories">Garage Sales
+Sports Matches
+Community Classes
+Volunteer Opportunities
+Exhibitions
+Festivals</textarea>
+                                        <p class="hint">One category per line</p>
+                                    </div>
+                                    
+                                    <div class="settings-actions">
+                                        <button type="button" class="btn outline-btn">Reset to Default</button>
+                                        <button type="submit" class="btn primary-btn">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Users Settings -->
+                        <div class="tab-content" id="users">
+                            <div class="settings-section">
+                                <h2>User Settings</h2>
+                                <form id="user-settings-form">
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="allow-registration" name="allow-registration" checked>
+                                            <label for="allow-registration">Allow new user registrations</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="email-verification" name="email-verification" checked>
+                                            <label for="email-verification">Require email verification</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="default-user-role">Default User Role</label>
+                                        <select id="default-user-role" name="default-user-role">
+                                            <option value="user" selected>User</option>
+                                            <option value="organizer">Organizer</option>
+                                            <option value="moderator">Moderator</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="verification-requirements">Verification Requirements</label>
+                                        <textarea id="verification-requirements" name="verification-requirements">To become a verified organizer, users must:
+1. Have created at least 3 successful events
+2. Have been a member for at least 30 days
+3. Have a complete profile with verified email</textarea>
+                                    </div>
+                                    
+                                    <div class="settings-actions">
+                                        <button type="button" class="btn outline-btn">Reset to Default</button>
+                                        <button type="submit" class="btn primary-btn">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Notifications Settings -->
+                        <div class="tab-content" id="notifications">
+                            <div class="settings-section">
+                                <h2>Notification Settings</h2>
+                                <form id="notification-settings-form">
+                                    <div class="form-group">
+                                        <label>Admin Notifications</label>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="notify-new-event" name="notify-new-event" checked>
+                                            <label for="notify-new-event">New event submissions</label>
+                                        </div>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="notify-new-user" name="notify-new-user" checked>
+                                            <label for="notify-new-user">New user registrations</label>
+                                        </div>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="notify-reports" name="notify-reports" checked>
+                                            <label for="notify-reports">Content reports</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>User Notifications</label>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="notify-event-approved" name="notify-event-approved" checked>
+                                            <label for="notify-event-approved">Event approval notifications</label>
+                                        </div>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="notify-event-reminder" name="notify-event-reminder" checked>
+                                            <label for="notify-event-reminder">Event reminders</label>
+                                        </div>
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="notify-new-rsvp" name="notify-new-rsvp" checked>
+                                            <label for="notify-new-rsvp">New RSVP notifications for organizers</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="notification-email">Notification Email</label>
+                                        <input type="email" id="notification-email" name="notification-email" value="notifications@communityconnect.com">
+                                        <p class="hint">Email address used to send notifications</p>
+                                    </div>
+                                    
+                                    <div class="settings-actions">
+                                        <button type="button" class="btn outline-btn">Reset to Default</button>
+                                        <button type="submit" class="btn primary-btn">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Appearance Settings -->
+                        <div class="tab-content" id="appearance">
+                            <div class="settings-section">
+                                <h2>Appearance Settings</h2>
+                                <form id="appearance-settings-form">
+                                    <div class="form-group">
+                                        <label for="primary-color">Primary Color</label>
+                                        <input type="color" id="primary-color" name="primary-color" value="#4f46e5">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="secondary-color">Secondary Color</label>
+                                        <input type="color" id="secondary-color" name="secondary-color" value="#f43f5e">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Theme Mode</label>
+                                        <div class="checkbox-group">
+                                            <input type="radio" id="theme-light" name="theme-mode" value="light" checked>
+                                            <label for="theme-light">Light (default)</label>
+                                        </div>
+                                        <div class="checkbox-group">
+                                            <input type="radio" id="theme-dark" name="theme-mode" value="dark">
+                                            <label for="theme-dark">Dark</label>
+                                        </div>
+                                        <div class="checkbox-group">
+                                            <input type="radio" id="theme-auto" name="theme-mode" value="auto">
+                                            <label for="theme-auto">Auto (based on user's system)</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="logo-upload">Logo</label>
+                                        <input type="file" id="logo-upload" name="logo-upload" accept="image/*">
+                                        <p class="hint">Recommended size: 200 x 50 pixels</p>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="favicon-upload">Favicon</label>
+                                        <input type="file" id="favicon-upload" name="favicon-upload" accept="image/*">
+                                        <p class="hint">Recommended size: 32 x 32 pixels</p>
+                                    </div>
+                                    
+                                    <div class="settings-actions">
+                                        <button type="button" class="btn outline-btn">Reset to Default</button>
+                                        <button type="submit" class="btn primary-btn">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Security Settings -->
+                        <div class="tab-content" id="security">
+                            <div class="settings-section">
+                                <h2>Security Settings</h2>
+                                <form id="security-settings-form">
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="enable-2fa" name="enable-2fa" checked>
+                                            <label for="enable-2fa">Enable Two-Factor Authentication for admins</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="session-timeout">Admin Session Timeout (minutes)</label>
+                                        <input type="number" id="session-timeout" name="session-timeout" value="60" min="5">
+                                        <p class="hint">Time before admin is automatically logged out due to inactivity</p>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="password-policy">Password Policy</label>
+                                        <select id="password-policy" name="password-policy">
+                                            <option value="basic">Basic (minimum 8 characters)</option>
+                                            <option value="medium" selected>Medium (8+ chars, uppercase, lowercase, number)</option>
+                                            <option value="strong">Strong (8+ chars, uppercase, lowercase, number, special)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="login-attempts">Max Login Attempts</label>
+                                        <input type="number" id="login-attempts" name="login-attempts" value="5" min="1">
+                                        <p class="hint">Number of failed login attempts before temporary lockout</p>
+                                    </div>
+                                    
+                                    <div class="settings-actions">
+                                        <button type="button" class="btn outline-btn">Reset to Default</button>
+                                        <button type="submit" class="btn primary-btn">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Settings navigation
+            const settingsNavItems = document.querySelectorAll('.settings-nav-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            settingsNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all nav items and tab contents
+                    settingsNavItems.forEach(navItem => navItem.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item and corresponding tab content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Form submissions
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate form submission
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Saving...';
+                    
+                    // Simulate API call
+                    setTimeout(function() {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                        
+                        // Show success message
+                        const successMessage = document.createElement('div');
+                        successMessage.style.padding = '1rem';
+                        successMessage.style.marginBottom = '1rem';
+                        successMessage.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                        successMessage.style.color = 'var(--success-color)';
+                        successMessage.style.borderRadius = 'var(--border-radius)';
+                        successMessage.style.display = 'flex';
+                        successMessage.style.alignItems = 'center';
+                        
+                        successMessage.innerHTML = `
+                            <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>
+                            Settings saved successfully.
+                        `;
+                        
+                        const activeTab = document.querySelector('.tab-content.active');
+                        activeTab.insertBefore(successMessage, activeTab.firstChild);
+                        
+                        // Auto-hide the message after 3 seconds
+                        setTimeout(() => {
+                            successMessage.style.opacity = '0';
+                            successMessage.style.transition = 'opacity 0.5s ease';
+                            setTimeout(() => {
+                                successMessage.remove();
+                            }, 500);
+                        }, 3000);
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

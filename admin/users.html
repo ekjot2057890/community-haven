@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Community Connect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo">Community<span>Connect</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="events.html">
+                            <i class="fas fa-calendar-days"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html" class="active">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html">
+                            <i class="fas fa-flag"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="btn outline-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Site</span>
+                </a>
+                <button class="btn secondary-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>User Management</h1>
+                <div class="admin-header-actions">
+                    <button class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <div class="admin-profile">
+                        <span>Admin User</span>
+                        <img src="https://via.placeholder.com/40" alt="Admin profile" class="avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Filters and Search -->
+                <div class="admin-controls">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search users..." class="search-input">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="filters">
+                        <select class="filter-select">
+                            <option value="">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="verified">Verified Organizer</option>
+                            <option value="banned">Banned</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="select-all">
+                                </th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Joined</th>
+                                <th>Events Created</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="row-checkbox">
+                                </td>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar">
+                                        <span>John Smith</span>
+                                    </div>
+                                </td>
+                                <td>john.smith@example.com</td>
+                                <td>Jan 15, 2025</td>
+                                <td>5</td>
+                                <td><span class="badge badge-primary">Verified Organizer</span></td>
+                                <td class="actions-cell">
+                                    <button class="icon-btn view-btn" title="View user">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="icon-btn edit-btn" title="Edit user">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="icon-btn ban-btn" title="Ban user">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="row-checkbox">
+                                </td>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar">
+                                        <span>Sarah Johnson</span>
+                                    </div>
+                                </td>
+                                <td>sarah.j@example.com</td>
+                                <td>Feb 20, 2025</td>
+                                <td>3</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td class="actions-cell">
+                                    <button class="icon-btn view-btn" title="View user">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="icon-btn edit-btn" title="Edit user">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="icon-btn verify-btn" title="Verify user">
+                                        <i class="fas fa-check-circle"></i>
+                                    </button>
+                                    <button class="icon-btn ban-btn" title="Ban user">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="row-checkbox">
+                                </td>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar">
+                                        <span>Michael Brown</span>
+                                    </div>
+                                </td>
+                                <td>michael.b@example.com</td>
+                                <td>Mar 5, 2025</td>
+                                <td>2</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td class="actions-cell">
+                                    <button class="icon-btn view-btn" title="View user">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="icon-btn edit-btn" title="Edit user">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="icon-btn verify-btn" title="Verify user">
+                                        <i class="fas fa-check-circle"></i>
+                                    </button>
+                                    <button class="icon-btn ban-btn" title="Ban user">
+                                        <i class="fas fa-ban"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="row-checkbox">
+                                </td>
+                                <td>
+                                    <div class="user-info">
+                                        <img src="https://via.placeholder.com/40" alt="User avatar" class="avatar">
+                                        <span>Emily Davis</span>
+                                    </div>
+                                </td>
+                                <td>emily.d@example.com</td>
+                                <td>Apr 12, 2025</td>
+                                <td>0</td>
+                                <td><span class="badge badge-danger">Banned</span></td>
+                                <td class="actions-cell">
+                                    <button class="icon-btn view-btn" title="View user">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="icon-btn unban-btn" title="Unban user">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="bulk-actions">
+                    <select class="bulk-select">
+                        <option value="">Bulk Actions</option>
+                        <option value="verify">Verify Selected</option>
+                        <option value="ban">Ban Selected</option>
+                        <option value="unban">Unban Selected</option>
+                    </select>
+                    <button class="btn primary-btn">Apply</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Detail Modal -->
+    <div class="modal" id="user-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Details</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="user-profile">
+                    <div class="user-header">
+                        <img src="https://via.placeholder.com/80" alt="User avatar" class="avatar large">
+                        <div>
+                            <h3>John Smith</h3>
+                            <span class="badge badge-primary">Verified Organizer</span>
+                        </div>
+                    </div>
+                    <div class="user-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Email:</span>
+                            <span class="detail-value">john.smith@example.com</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Joined:</span>
+                            <span class="detail-value">January 15, 2025</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Events Created:</span>
+                            <span class="detail-value">5</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Events Attended:</span>
+                            <span class="detail-value">12</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-events">
+                    <h4>Events History</h4>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Summer Block Party</td>
+                                <td>Festivals</td>
+                                <td>Jun 20, 2025</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>Community Cleanup</td>
+                                <td>Volunteer Opportunities</td>
+                                <td>May 10, 2025</td>
+                                <td><span class="badge badge-success">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <td>Book Club Meeting</td>
+                                <td>Community Classes</td>
+                                <td>Apr 15, 2025</td>
+                                <td><span class="badge badge-success">Approved</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn verify-btn">
+                    <i class="fas fa-check-circle"></i> Verify Organizer
+                </button>
+                <button class="btn ban-btn">
+                    <i class="fas fa-ban"></i> Ban User
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

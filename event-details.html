@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Details - Community Connect</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .event-header {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+        .event-header {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    
+    .event-title {
+        margin-bottom: 0.5rem;
+    }
+    
+    .event-banner {
+        height: 300px;
+        background-color: var(--bg-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius);
+        margin-bottom: 2rem;
+    }
+    
+    .event-banner i {
+        font-size: 5rem;
+        color: var(--gray-400);
+    }
+    
+    .event-info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    @media (min-width: 640px) {
+        .event-info-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    .info-card {
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .info-card i {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-right: 1rem;
+    }
+    
+    .info-content p:first-child {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .info-content p:last-child {
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+    
+    .event-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+        .event-layout {
+            grid-template-columns: 2fr 1fr;
+        }
+    }
+    
+    .event-description {
+        margin-bottom: 2rem;
+    }
+    
+    .event-description h2 {
+        margin-bottom: 1rem;
+    }
+    
+    .event-description p {
+        white-space: pre-line;
+    }
+    
+    .event-sidebar {
+        position: sticky;
+        top: 6rem;
+    }
+    
+    .sidebar-card {
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background-color: var(--bg-color);
+    }
+    
+    .sidebar-card h3 {
+        margin-bottom: 1rem;
+    }
+    
+    .attendees {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .attendees i {
+        margin-right: 0.5rem;
+        color: var(--text-muted);
+    }
+    
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+    }
+    
+    .back-link:hover {
+        color: var(--text-color);
+    }
+    
+    .back-link i {
+        margin-right: 0.5rem;
+    }
+    
+    .organizer-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .organizer-info img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+    
+    .organizer-name {
+        font-weight: 500;
+    }
+    
+    .verified-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.75rem;
+        color: var(--primary-color);
+    }
+    
+    .verified-badge i {
+        margin-right: 0.25rem;
+    }
+</style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="index.html" class="logo">Community<span>Connect</span></a>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                    <li><a href="my-events.html">My Events</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <button class="icon-btn theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="login.html" class="btn primary-btn">Sign In</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="create-event.html">Create Event</a></li>
+                <li><a href="my-events.html">My Events</a></li>
+                <li><a href="login.html">Sign In</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <a href="events.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to events
+        </a>
+
+        <div class="event-header">
+            <div>
+                <span class="event-category">Community Classes</span>
+                <h1 class="event-title">Community Yoga Session</h1>
+            </div>
+            <div class="event-actions">
+                <a href="event-edit.html?id=1" class="btn outline-btn">
+                    <i class="fas fa-edit"></i>
+                    Edit
+                </a>
+                <button class="btn secondary-btn">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                </button>
+            </div>
+        </div>
+
+        <div class="event-banner">
+            <i class="fas fa-calendar-days"></i>
+        </div>
+
+        <div class="event-layout">
+            <div class="event-main">
+                <div class="event-info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-calendar-days"></i>
+                        <div class="info-content">
+                            <p>Date</p>
+                            <p>Saturday, May 25, 2025</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="info-content">
+                            <p>Time</p>
+                            <p>9:00 AM - 10:30 AM</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="info-content">
+                            <p>Location</p>
+                            <p>Central Park, Main Lawn</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-user"></i>
+                        <div class="info-content">
+                            <p>Organizer</p>
+                            <p>Jane Smith</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-description">
+                    <h2>About this event</h2>
+                    <p>Join us for a relaxing yoga session in the park. All levels welcome! Please bring your own mat and water bottle.
+
+In case of rain, the event will be moved to the Community Center.
+
+This is a free event, but donations are appreciated to help cover costs.
+
+What to expect:
+- 90-minute gentle yoga session
+- Breathing exercises
+- Meditation
+- Community connection
+
+Our instructor, Jane Smith, is a certified yoga teacher with over 5 years of experience teaching community classes.</p>
+                </div>
+            </div>
+
+            <div class="event-sidebar">
+                <div class="sidebar-card">
+                    <h3>RSVP to this event</h3>
+                    <div class="attendees">
+                        <i class="fas fa-users"></i>
+                        <span>12 people are attending</span>
+                    </div>
+                    <a href="event-rsvp.html?id=1" class="btn primary-btn" style="width: 100%;">RSVP Now</a>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>Organizer</h3>
+                    <div class="organizer-info">
+                        <img src="https://via.placeholder.com/60" alt="Organizer avatar">
+                        <div>
+                            <p class="organizer-name">Jane Smith</p>
+                            <p class="verified-badge">
+                                <i class="fas fa-check-circle"></i>
+                                Verified Organizer
+                            </p>
+                        </div>
+                    </div>
+                    <p>Jane has been organizing community events for over 3 years.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Community Connect</h3>
+                <p>Bringing communities together through local events and activities.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="events.html">Browse Events</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                    <li><a href="my-events.html">My Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="events.html?category=garage-sales">Garage Sales</a></li>
+                    <li><a href="events.html?category=sports-matches">Sports Matches</a></li>
+                    <li><a href="events.html?category=community-classes">Community Classes</a></li>
+                    <li><a href="events.html?category=volunteer">Volunteer Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li>support@communityconnect.com</li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Community Connect. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

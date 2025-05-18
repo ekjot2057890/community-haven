@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Community Connect</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .rsvp-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .event-summary {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            background-color: var(--bg-secondary);
+        }
+        
+        .event-summary-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .event-summary-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .event-summary-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+        
+        .event-summary-details span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-summary-details i {
+            margin-right: 0.5rem;
+        }
+        
+        .rsvp-form {
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--bg-color);
+        }
+        
+        .form-title {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-group .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-group .checkbox-group input {
+            width: auto;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-link:hover {
+            color: var(--text-color);
+        }
+        
+        .back-link i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Community<span>Connect</span></a>
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="events.html" class="active">Events</a></li>
+                        <li><a href="create-event.html">Create Event</a></li>
+                        <li><a href="my-events.html">My Events</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="icon-btn" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <a href="login.html" class="btn primary-btn">Sign In</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                    <li><a href="my-events.html">My Events</a></li>
+                    <li><a href="login.html">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="rsvp-container">
+                <a href="event-details.html?id=1" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to event details
+                </a>
+                
+                <div class="event-summary">
+                    <div class="event-summary-icon">
+                        <i class="fas fa-calendar-days"></i>
+                    </div>
+                    <div class="event-summary-content">
+                        <h3>Community Yoga Session</h3>
+                        <div class="event-summary-details">
+                            <span><i class="fas fa-calendar-days"></i>Saturday, May 25, 2025</span>
+                            <span><i class="fas fa-clock"></i>9:00 AM - 10:30 AM</span>
+                            <span><i class="fas fa-map-marker-alt"></i>Central Park, Main Lawn</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rsvp-form">
+                    <h2 class="form-title">RSVP for this Event</h2>
+                    
+                    <form id="rsvp-form">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests" name="guests">
+                                <option value="1">Just me</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                                <option value="5">5 people</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comments">Comments or Questions</label>
+                            <textarea id="comments" name="comments" placeholder="Any special requests or questions for the organizer?"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="notifications" name="notifications" checked>
+                                <label for="notifications">Receive notifications about this event</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">I agree to the <a href="#">terms and conditions</a></label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <a href="event-details.html?id=1" class="btn outline-btn">Cancel</a>
+                            <button type="submit" class="btn primary-btn">Confirm RSVP</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Community Connect</h3>
+                    <p>Bringing communities together through local events and activities.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="events.html">Browse Events</a></li>
+                        <li><a href="create-event.html">Create Event</a></li>
+                        <li><a href="my-events.html">My Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="events.html?category=garage-sales">Garage Sales</a></li>
+                        <li><a href="events.html?category=sports-matches">Sports Matches</a></li>
+                        <li><a href="events.html?category=community-classes">Community Classes</a></li>
+                        <li><a href="events.html?category=volunteer">Volunteer Opportunities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>support@communityconnect.com</li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Community Connect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rsvpForm = document.getElementById('rsvp-form');
+            
+            if (rsvpForm) {
+                rsvpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate form submission
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+                    
+                    // Simulate API call
+                    setTimeout(function() {
+                        // Redirect to success page or show success message
+                        alert('Thank you for your RSVP! You will receive a confirmation email shortly.');
+                        window.location.href = 'event-details.html?id=1&rsvp=success';
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
